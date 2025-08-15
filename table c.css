@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  max-width: 700px;
+  max-width: 800px;
   margin: 60px auto;
   padding: 30px;
   background: #fff;
@@ -14,12 +14,33 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.asoy {
-    font-style: italic;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed; /* Membuat kolom punya lebar tetap */
 }
+
+th, td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  word-wrap: break-word;   /* Pecah kata panjang */
+  white-space: normal;     /* Supaya bisa turun baris */
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
 h2 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #333;
 }
 
@@ -27,7 +48,7 @@ input {
   display: block;
   width: 100%;
   padding: 12px 15px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
@@ -38,6 +59,50 @@ input {
 input:focus {
   border-color: #007bff;
   outline: none;
+}
+
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  margin-bottom: 10px;
+}
+.add-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: black;
+  margin-right: 5px;
+}
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.clear-btn {
+  background-color: red;
+  color: white;
+  margin-left: 10px;
+}
+.clear-btn:hover {
+  background-color: darkred;
 }
 
 table {
@@ -59,19 +124,4 @@ th {
 
 tr:hover {
   background-color: #f1f1f1;
-}
-
-button.delete-btn {
-  padding: 6px 12px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s;
-}
-
-button.delete-btn:hover {
-  background-color: #c82333;
 }
