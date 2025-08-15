@@ -2,25 +2,28 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Tabel Dinamis</title>
+  <title>Tabel</title>
   <link rel="stylesheet" href="table c.css">
 </head>
 <body>
-
   <div class="container">
-    <h2>Input Teks ke Tabel</h2>
-    <input type="text" id="inputText" class="asoy" placeholder="lalu kita Masukkan Royco" />
+    <h2>Input Kegiatan & Deskripsi</h2>
+
+    <input type="text" id="inputKegiatan" placeholder="Masukkan nama kegiatan" />
+    <input type="text" id="inputDeskripsi" placeholder="Masukkan deskripsi kegiatan" />
+    <button id="addBtn" class="add-btn">Tambah</button>
+    <button id="clearAll" class="clear-btn">Hapus Semua</button>
 
     <table>
       <thead>
         <tr>
           <th>No</th>
-          <th>Teks</th>
-          <th>Hapus</th>
+          <th>Kegiatan</th>
+          <th>Deskripsi</th>
+          <th>Tool</th>
         </tr>
       </thead>
-      <tbody id="tableBody">
-      </tbody>
+      <tbody id="tableBody"></tbody>
     </table>
   </div>
 
