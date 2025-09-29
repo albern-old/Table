@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>QR/Barcode Scanner</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <style>
-    body {
-      padding: 20px;
-      background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    #scanner-container {
-      margin-top: 20px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      background: #f9f9f9;
-      border-radius: 5px;
-    }
-    #qr-reader {
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    #scan-result {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 5px;
-      font-size: 1.2em;
-      font-weight: bold;
-      display: none;
-    }
-    .scan-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .scan-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Input Data Barang (Lengkap)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="table c.css">
 </head>
 <body>
-  <div class="container">
-    <h2>QR/Barcode Scanner</h2>
+    <div class="container">
+        <h2 class="text-center">Sistem Input Data Barang</h2>
+        
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tabData" data-toggle="tab"><strong>Data Barang</strong></a></li>
+            <li><a href="#tabInput" data-toggle="tab"><strong>Input Data</strong></a></li>
+        </ul>
 
-    <div class="form-group">
-      <div class="input-group">
-        <input type="text" class="form-control" id="inputBarcode" placeholder="Masukkan Barcode Manual">
-        <span class="input-group-btn">
-          <button class="btn btn-info" type="button" id="scanBarcodeBtn">Mulai Scan Kamera</button>
-        </span>
-      </div>
+        <div class="tab-content" style="margin-top:15px;">
+            <div class="tab-pane fade in active" id="tabData">
+                <div id="dataListContainer" class="row">
+                    </div>
+                <button id="clearAllBtn" class="btn btn-danger" style="margin-top: 20px; display: none;">Hapus Semua Data</button>
+            </div>
+
+            <div class="tab-pane fade" id="tabInput">
+                <h3>Tambah / Edit Barang</h3>
+                <form id="itemForm">
+                    <input type="hidden" id="itemId">
+                    <div class="form-group">
+                        <label for="inputNama">Nama Barang</label>
+                        <input type="text" class="form-control" id="inputNama" placeholder="Masukkan nama barang" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputBarcode">Kode Barcode</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputBarcode" placeholder="Scan atau ketik kode barcode" required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" id="scanBarcodeBtn">Scan Kamera</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputStok">Jumlah Stok</label>
+                        <input type="number" class="form-control" id="inputStok" placeholder="Masukkan jumlah stok" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputHargaDasar">Harga Dasar</label>
+                        <input type="number" class="form-control" id="inputHargaDasar" placeholder="Harga modal/dasar" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputHargaJual">Harga Jual</label>
+                        <input type="number" class="form-control" id="inputHargaJual" placeholder="Harga jual ke pelanggan" min="0" required>
+                    </div>
+
+                    <div id="scanner-container" style="display:none; margin-top:10px; text-align: center;">
+                        <p>Arahkan kamera ke barcode:</p>
+                        <div id="qr-reader" style="width: 100%; max-width: 400px; margin: 0 auto;"></div>
+                        <button type="button" id="stopScanBtn" class="btn btn-secondary" style="margin-top: 10px;">Hentikan Scan</button>
+                    </div>
+                    
+                    <div class="text-right" style="margin-top: 20px;">
+                        <button type="button" id="submitBtn" class="btn btn-success">Simpan Data</button>
+                        <button type="button" id="resetBtn" class="btn btn-warning">Reset Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div id="scanner-container">
-      <div id="qr-reader"></div>
-      <button type="button" id="stopScanBtn" class="btn btn-secondary" style="margin-top: 10px; display: none;">Hentikan Scan</button>
-    </div>
-
-    <div id="scan-result"></div>
-
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-  <script src="table j.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="table j.js"></script>
 </body>
 </html>
-
