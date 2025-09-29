@@ -1,127 +1,72 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f6f9;
-  margin: 0;
-  padding: 0;
+    padding-top: 20px;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 30px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  table-layout: fixed; /* Membuat kolom punya lebar tetap */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
 }
 
-th, td {
-  padding: 14px 16px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-  word-wrap: break-word;   /* Pecah kata panjang */
-  white-space: normal;     /* Supaya bisa turun baris */
+.nav-tabs>li>a {
+    color: #555;
+    font-weight: bold;
 }
 
-th {
-  background-color: #007bff;
-  color: white;
+.item-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-tr:hover {
-  background-color: #f1f1f1;
+.item-card h4 {
+    margin-top: 0;
+    color: #333;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+.item-card p {
+    margin-bottom: 5px;
+    color: #666;
 }
 
-input {
-  display: block;
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  box-sizing: border-box;
-  transition: border 0.3s;
+.item-card .barcode-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #007bff;
 }
 
-input:focus {
-  border-color: #007bff;
-  outline: none;
+.item-card .stock-text {
+    font-weight: bold;
+    color: #28a745;
 }
 
-button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s;
+.item-card .price-base-text {
+    font-weight: bold;
+    color: #dc3545; /* Merah untuk harga dasar */
 }
 
-.add-btn {
-  background-color: #28a745;
-  color: white;
-  margin-bottom: 10px;
-}
-.add-btn:hover {
-  background-color: #218838;
+.item-card .price-sell-text {
+    font-weight: bold;
+    color: #ffc107; /* Kuning/emas untuk harga jual */
 }
 
-.delete-btn {
-  background-color: #dc3545;
-  color: white;
-}
-.delete-btn:hover {
-  background-color: #c82333;
+.item-card .btn-aksi {
+    margin-left: 5px;
 }
 
-.edit-btn {
-  background-color: #ffc107;
-  color: black;
-  margin-right: 5px;
-}
-.edit-btn:hover {
-  background-color: #e0a800;
-}
-
-.clear-btn {
-  background-color: red;
-  color: white;
-  margin-left: 10px;
-}
-.clear-btn:hover {
-  background-color: darkred;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-th, td {
-  padding: 14px 16px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-th {
-  background-color: #007bff;
-  color: white;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
+#clearAllBtn {
+    width: 100%;
+    margin-top: 20px;
 }
