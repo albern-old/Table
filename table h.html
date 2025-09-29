@@ -1,131 +1,32 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tabel input</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="table c.css">
-  <style>
-    /* Tambahan CSS untuk scanner */
-    #scanner-container {
-      display: none;
-      margin-top: 10px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      background: #f9f9f9;
-    }
-    #qr-reader {
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    #scan-result {
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
-    }
-    .scan-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .scan-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Data Input</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #video { width: 100%; max-width: 400px; }
+        input { width: 300px; padding: 10px; margin: 10px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; font-weight: bold; color: green; }
+    </style>
 </head>
 <body>
-  <div id="notification" class="notification"></div>
-  <div class="container">
-    <h2 class="text-center">Tabel input</h2>
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#tabData" data-toggle="tab"><strong>Hasil</strong></a></li>
-      <li><a href="#tabInput" data-toggle="tab"><strong>Input</strong></a></li>
-    </ul>
-    <div class="tab-content" style="margin-top:15px;">
-      <div class="tab-pane fade in active" id="tabData">
-        <table class="table table-bordered table-hover custom-table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Kegiatan</th>
-              <th>Deskripsi</th>
-              <th>Prioritas</th>
-              <th>Status</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody"></tbody>
-        </table>
-        <button id="clearAll" class="btn btn-danger">Hapus Semua</button>
-      </div>
-      <div class="tab-pane fade" id="tabInput">
-        <h3>Tambah Kegiatan</h3>
-        <form id="inputForm">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputKegiatan">Nama Kegiatan</label>
-                <input type="text" class="form-control input-custom" id="inputKegiatan">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputDeskripsi">Deskripsi</label>
-                <input type="text" class="form-control input-custom" id="inputDeskripsi">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputPrioritas">Prioritas</label>
-                <select class="form-control input-custom" id="inputPrioritas">
-                  <option value="Tinggi">Tinggi</option>
-                  <option value="Sedang">Sedang</option>
-                  <option value="Rendah">Rendah</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputStatus">Status</label>
-                <select class="form-control input-custom" id="inputStatus">
-                  <option value="Belum">Belum</option>
-                  <option value="Sudah">Sudah</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="inputBarcode">Lacak Barcode (Manual atau Kamera)</label>
-                <div class="input-group">
-                  <input type="text" class="form-control input-custom" id="inputBarcode" placeholder="Masukkan Barcode Manual">
-                  <span class="input-group-btn">
-                    <button class="btn btn-info" type="button" id="scanBarcodeBtn">Scan Kamera</button>
-                  </span>
-                </div>
-                <!-- Container untuk Scanner Kamera -->
-                <div id="scanner-container">
-                  <div id="qr-reader" style="width: 400px;"></div>
-                  <button type="button" id="stopScanBtn" class="btn btn-secondary" style="margin-top: 10px;">Stop Scan</button>
-                </div>
-                <!-- Area Hasil Scan -->
-                <div id="scan-result"></div>
-              </div>
-            </div>
-          </div>
-          <div class="text-right">
-            <button type="button" id="addBtn" class="btn btn-success">Tambah</button>
-            <button type="button" id="clearAllInput" class="btn btn-warning">Reset</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+    <h1>Barcode Data Input Feature</h1>
+    <p>Point your camera at a barcode to scan and input data automatically.</p>
+    
+    <video id="video" autoplay muted></video>
+    <br>
+    <input type="text" id="barcodeInput" placeholder="Scanned barcode will appear here" readonly>
+    <br>
+    <button id="startBtn">Start Scanner</button>
+    <button id="stopBtn" disabled>Stop Scanner</button>
+    
+    <div id="result"></div>
 
-  <!-- Pustaka jQuery dan Bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-  <!-- Pustaka html5-qrcode untuk Scanner -->
-  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-  
-  <script src="table j.js"></script>
+    <script src="table j.js"></script>
 </body>
 </html>
